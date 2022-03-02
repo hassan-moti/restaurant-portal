@@ -1,16 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import fooodList from 'src/app/components/foodList.json' ;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductListService {
-public items:any[]=fooodList;
+  
+  getmenu() {
+   
+    let items= this.http.get('/assets/menu.json');
+    console.log (items);
+    return items;
 
-
-
-   constructor() {
     
   }
+   constructor(private http: HttpClient) {}
+   
    
 }
