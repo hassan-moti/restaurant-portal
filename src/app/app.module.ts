@@ -11,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import it from '@angular/common/locales/it';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgZorroModule} from './components/ngZorro.module';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 
 registerLocaleData(it);
 
@@ -26,8 +26,7 @@ registerLocaleData(it);
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgZorroModule
-    
+    DemoNgZorroAntdModule
   ],
   providers: [ProductListService, { provide: NZ_I18N, useValue: it_IT }],
   bootstrap: [AppComponent]

@@ -142,6 +142,6 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzPipesModule,
   ]
 })
-export class NgZorroModule {
+export class DemoNgZorroAntdModule {
 
 }

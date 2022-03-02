@@ -1,26 +1,14 @@
-<!-- <nz-list nzGrid>
+<nz-list nzGrid>
     <div nz-row [nzGutter]="100">
       <div nz-col [nzSpan]="10" *ngFor="let product of products |async;">
         <nz-list-item>
-          <nz-card [nzTitle]="product.product_name" [nzBordered]="true"  > Card content</nz-card>
-          <nz-card></nz-card>
+          <nz-card [nzTitle]="product.product_name" [nzBordered]="true">
+            {{product.product_name}} <br> <img   height="400" width="400" src="assets/{{product.image_title}}" alt="burger img"> <br> <b>{{product.price}}</b> 
+          </nz-card>
         </nz-list-item>
       </div>
     </div>
-  </nz-list> -->
-
-
-  <!-- demo scene -->
-  <nz-card style="width:300px;" nzTitle="Card title" [nzExtra]="extraTemplate">
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
-  </nz-card>
-  <ng-template #extraTemplate>
-    <a>More</a>
-  </ng-template>
-
-<!-- yahan demo end -->
+  </nz-list>
 
 <!-- 
 
