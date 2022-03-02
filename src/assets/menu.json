@@ -1,43 +1,43 @@
 [
     {
-     "product_name": "Jumbo Shawarma",
-     "price": "Rs. 280",
-     "image_title":"JumboShawarma.jpeg"
+    "product_name": "Jumbo Shawarma",
+    "price": "Rs. 280",
+    "image_title":"JumboShawarma.jpeg"
     },
     {
-     "product_name": "Large Shawarma ",
-     "price": "Rs. 240",
-     "image_title":""
+    "product_name": "Large Shawarma ",
+    "price": "Rs. 240",
+    "image_title":"LargeShawarma.jpeg"
     },
     {
-        "product_name": "Tortilla Wrap",
-     "price": "Rs. 340",
-     "image_title":"TortillaWrap.jpeg"
+    "product_name": "Tortilla Wrap",
+    "price": "Rs. 340",
+    "image_title":"TortillaWrap.jpeg"
     },
     {
     "product_name": "Zinger Shawarma",
-     "price": "Rs. 430",
-     "image_title":"ZingerShawarma.jpeg"
+    "price": "Rs. 430",
+    "image_title":"ZingerShawarma.jpeg"
     },
     {
-        "product_name": "Zinger Wrap",
-     "price": "Rs. 450",
-     "image_title":"ZingerWrap.jpeg"
+    "product_name": "Zinger Wrap",
+    "price": "Rs. 450",
+    "image_title":"ZingerWrap.jpeg"
     },
     {
-        "product_name": "Chicken Wrap",
-     "price": "Rs. 370",
-     "image_title":"ChickenWrap.jpeg"
+    "product_name": "Chicken Wrap",
+    "price": "Rs. 370",
+    "image_title":"ChickenWrap.jpeg"
     },
     {
-        "product_name": "Superior Zinger",
-     "price": "Rs. 430",
-     "image_title":""
+    "product_name": "Superior Zinger",
+    "price": "Rs. 430",
+    "image_title":"SuperiorZinger.jpeg"
     },
     {
-        "product_name": "Mighty Zinger ",
-     "price": "Rs. 500",
-     "image_title":"MightyZinger.jpeg"
+    "product_name": "Mighty Zinger ",
+    "price": "Rs. 500",
+    "image_title":"MightyZinger.jpeg"
     },
     {
         "product_name": "Steak Burger ",
@@ -47,7 +47,7 @@
     {
         "product_name": "Super steak",
      "price": "Rs. 340",
-     "image_title":""
+     "image_title":"Steak.jpeg"
     },
     {
         "product_name": "Bold Burger",
@@ -72,36 +72,36 @@
     {
         "product_name": "Cold Drink",
      "price": "Rs. 60",
-     "image_title":""
+     "image_title":"ColdDrink.jpeg"
     },
     {
         "product_name": "Fries Box",
      "price": "Rs. 200",
-     "image_title":""
+     "image_title":"FrenchFries.jpeg"
     },
     {
         "product_name": "Water Bottle",
      "price": "Rs. 40",
-     "image_title":""
+     "image_title":"WaterBottle.jpeg"
     },
     {
         "product_name": "Garlic Mayo dip",
      "price": "Rs. 30",
-     "image_title":""
+     "image_title":"GarlicMayo.jpeg"
     },
     {
         "product_name": "Thousand Island dip",
      "price": "Rs. 50",
-     "image_title":""
+     "image_title":"ThousandIslandDip.jpeg"
     },
     {
         "product_name": "Extra Chicken",
      "price": "Rs. 50",
-     "image_title":""
+     "image_title":"ExtraChicken.jpeg"
     },
     {
         "product_name": "Extra Salad\/olives\/jalapeno",
      "price": "Rs. 20",
-     "image_title":""
+     "image_title":"Salad.jpeg"
     }
    ]
