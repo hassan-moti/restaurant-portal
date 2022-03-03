@@ -10,12 +10,7 @@ export class ProductListService {
   getmenu() {
    
     let items= this.http.get('/assets/menu.json');
-    console.log (items);
-    return items;
-
-    
+    return items; 
   }
    constructor(private http: HttpClient) {}
-   
-   
 }
