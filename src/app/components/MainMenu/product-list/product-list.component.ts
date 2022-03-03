@@ -9,7 +9,7 @@ import { ProductListService } from '../../product-list.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products:any=[];
+  products: any =[];
   selectedProduct: Product | undefined; 
 
   isVisible=false;
@@ -23,6 +23,11 @@ export class ProductListComponent implements OnInit {
 
   handleOk(): void {
     this.isVisible = false;
+    // Goal: To replace this product with the new selected/updated product
+    let proudctToBeUpdated = this.products.find((product: Product) => product.product_name === this.selectedProduct?.product_name);
+    // https://stackoverflow.com/questions/5915789/how-to-replace-item-in-array
+    // products
+    // write this array in menu.json
     this.selectedProduct = undefined;
   }
 
@@ -33,6 +38,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.products=this.productServices.getmenu();
+    this.products = this.productServices.getmenu();
   }
 }
