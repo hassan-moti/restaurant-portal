@@ -2,9 +2,42 @@
     <div nz-row [nzGutter]="16">
       <div nz-col [nzSpan]="8" *ngFor="let product of products |async;">
         <nz-list-item>          
-          <nz-card [nzTitle]="product.product_name" [nzBordered]="true" >
-           <img   height="400" width="400" src="assets/{{product.image_title}}" alt="{{product.product_name}}"> <br> <b>{{product.price}}</b> 
+        <form >
+           <nz-card [nzTitle]="product.product_name" [nzBordered]="true" >
+           <img  
+            height="400"
+            width="400"
+            src="assets/{{product.image_title}}" 
+            alt="{{product.product_name}}">
+            <br>
+            <b>
+            {{product.price}}
+            </b>
+            <br> 
+            <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Edit Item</span></button>
+    <nz-modal [(nzVisible)]="isVisible" [nzTitle]="product.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <ng-container *nzModalContent>
+
+        <form nz-form nzLayout="inline" #menu="ngForm" >
+          {{menu.value|json }}
+          <nz-form-item >
+            <nz-form-control>
+              <label for="itemName">Name </label>
+              <input ngModel name="itemName" id="itemName" type="text" placeholder="Item-Name">
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item >
+            <nz-form-control>
+              <label for="price">Price </label>
+              <input ngModel name="price" id="price" type="number" placeholder="Price">
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+
+      </ng-container>
+    </nz-modal>
           </nz-card>
+        </form>
         </nz-list-item>
       </div>
     </div>

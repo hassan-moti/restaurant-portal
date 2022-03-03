@@ -10,7 +10,23 @@ export class ProductListComponent implements OnInit {
 
   products:any=[];
 
+  isVisible=false;
+
   constructor(private productServices:ProductListService ) { }
+  
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+     
+
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
 
   ngOnInit(): void {
 
