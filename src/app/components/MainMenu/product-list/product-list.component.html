@@ -20,23 +20,18 @@
     </div>
   </nz-list>
 
-  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
     <ng-container *nzModalContent>
-
-      <form nz-form nzLayout="inline" #menu="ngForm" >
-        <nz-form-item >
-          <nz-form-control>
-            <label for="itemName">Name </label>
-            <input ngModel name="itemName" id="itemName" type="text" placeholder="Item-Name">
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item >
-          <nz-form-control>
-            <label for="price">Price </label>
-            <input ngModel name="price" id="price" type="number" placeholder="Price">
-          </nz-form-control>
-        </nz-form-item>
-      </form>
-
+        <form [formGroup]="productForm">
+            <h2>Product Details</h2>
+          
+            <label for="productName">Name: </label>
+            <input id="productName" type="text" formControlName="productName">
+          
+            <label for="productPrice">Price: </label>
+            <input id="productPrice" type="text" formControlName="productPrice">
+        </form>
     </ng-container>
+
+
   </nz-modal>

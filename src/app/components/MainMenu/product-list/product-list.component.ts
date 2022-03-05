@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
 
@@ -13,21 +14,51 @@ export class ProductListComponent implements OnInit {
   selectedProduct: Product | undefined; 
 
   isVisible=false;
+  
+  productForm = this.fb.group({
+    productName: [''],
+    productPrice: [''],
+  });
 
-  constructor(private productServices:ProductListService ) { }
+  constructor(
+    private productServices:ProductListService,
+    private fb: FormBuilder  
+  ) { }
   
   showModal(product: Product): void {
     this.isVisible = true;
     this.selectedProduct = product;
+    this.productForm.patchValue({
+      productName: this.selectedProduct.product_name,
+      productPrice: this.selectedProduct.price
+    });
   }
 
-  handleOk(): void {
-    this.isVisible = false;
-    // Goal: To replace this product with the new selected/updated product
-    let proudctToBeUpdated = this.products.find((product: Product) => product.product_name === this.selectedProduct?.product_name);
-    // https://stackoverflow.com/questions/5915789/how-to-replace-item-in-array
-    // products
+  handleSumbit(): void {
+    console.log(this.selectedProduct);
+    // 
+    // let proudctToBeUpdated = this.products.find((product: Product) => product.product_name === this.selectedProduct?.product_name);
+    let proudctToBeUpdated;
+    console.log(this.products);
+    for (const prod of this.products) {
+      if (prod.product_name === this.selectedProduct?.product_name) {
+        console.log(prod);
+        proudctToBeUpdated = prod;
+        break;
+      }
+    }
+    console.log(proudctToBeUpdated);
+    const updatedProduct: Product = {
+      product_name: this.productForm.get('productName')?.value,
+      price: this.productForm.get('productPrice')?.value,
+      image_title: proudctToBeUpdated.image_title
+    }
+    const index = this.products.indexOf(proudctToBeUpdated);
+    if (index !== -1) {
+        this.products[index] = updatedProduct;
+    }
     // write this array in menu.json
+    this.isVisible = false;
     this.selectedProduct = undefined;
   }
 
