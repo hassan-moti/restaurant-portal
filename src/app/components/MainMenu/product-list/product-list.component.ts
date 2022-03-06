@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
-
+import * as fs from 'fs';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
+   fs = require('fs');
   products: any =[];
   selectedProduct: Product | undefined; 
 
@@ -28,6 +28,7 @@ export class ProductListComponent implements OnInit {
   showModal(product: Product): void {
     this.isVisible = true;
     this.selectedProduct = product;
+
     this.productForm.patchValue({
       productName: this.selectedProduct.product_name,
       productPrice: this.selectedProduct.price
@@ -57,8 +58,13 @@ export class ProductListComponent implements OnInit {
     if (index !== -1) {
         this.products[index] = updatedProduct;
     }
-    // write this array in menu.json
-    this.isVisible = false;
+console.warn(this.products)
+const myJSONString= JSON.stringify(this.products);
+console.log(myJSONString);
+this.fs.writeFile( 'C:/Users/Hassan Motiwala/Desktop/restaurant-portal/src/assets/menu.json', myJSONString)
+    
+          // write this array in menu.json
+    
     this.selectedProduct = undefined;
   }
 

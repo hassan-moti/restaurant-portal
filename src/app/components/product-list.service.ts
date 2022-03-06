@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from './interface';
+import menu from 'src/assets/menu.json';
 
 
 @Injectable({
@@ -10,12 +10,12 @@ export class ProductListService {
   
   getmenu() {
    
-    let items= this.http.get('/assets/menu.json');
+    let items= menu;
     return items; 
   }
 
   writeMenu(products: Product[]) {
     // replace the full file
   }
-   constructor(private http: HttpClient) {}
+   constructor() {}
 }

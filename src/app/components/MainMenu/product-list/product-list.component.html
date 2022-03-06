@@ -1,6 +1,6 @@
 <nz-list nzGrid>
     <div nz-row [nzGutter]="16">
-      <div nz-col [nzSpan]="8" *ngFor="let product of products | async;">
+      <div nz-col [nzSpan]="8" *ngFor="let product of products ;">
         <nz-list-item>          
            <nz-card [nzTitle]="product.product_name" [nzBordered]="true" >
            <img  
