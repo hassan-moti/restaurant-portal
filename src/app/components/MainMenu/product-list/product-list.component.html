@@ -1,11 +1,11 @@
 <nz-list nzGrid>
     <div nz-row [nzGutter]="16">
-      <div nz-col [nzSpan]="8" *ngFor="let product of products ;">
+      <div nz-col [nzSpan]="6" *ngFor="let product of products ;">
         <nz-list-item>          
            <nz-card [nzTitle]="product.product_name" [nzBordered]="true" >
            <img  
-            height="400"
-            width="400"
+            height="300"
+            width="300"
             src="assets/{{product.image_title}}" 
             alt="{{product.product_name}}">
             <br>
@@ -19,6 +19,9 @@
       </div>
     </div>
   </nz-list>
+<div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
+  <button nz-button [nzType]="'primary'" nzDanger >Add New Item</button>
+</div>
 
   <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
     <ng-container *nzModalContent>
@@ -30,6 +33,11 @@
           
             <label for="productPrice">Price: </label>
             <input id="productPrice" type="text" formControlName="productPrice">
+
+            <img id="formImage" style="margin-top: 10px;" height="200" width="200" src="assets/{{selectedProduct?.image_title}}" alt="{{selectedProduct?.product_name}}">
+            <br>
+            <input type="file" (change)="onFileSelector($event)" formControlName="productImage">
+
         </form>
     </ng-container>
 

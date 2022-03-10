@@ -2,27 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
-import * as fs from 'fs';
+// import { FormComponent } from '../../form/form.component';
+
+// import * as fs from 'fs';
+// import * as path from 'path';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-   fs = require('fs');
+  //  fs = require('fs');
   products: any =[];
-  selectedProduct: Product | undefined; 
+  selectedProduct: Product | undefined;
+  demo:any; 
 
   isVisible=false;
+  // forms=this.form;
   
   productForm = this.fb.group({
     productName: [''],
     productPrice: [''],
+    productImage:['']
   });
 
   constructor(
     private productServices:ProductListService,
-    private fb: FormBuilder  
+    private fb: FormBuilder,
+    // private form: FormComponent
   ) { }
   
   showModal(product: Product): void {
@@ -52,8 +59,11 @@ export class ProductListComponent implements OnInit {
     const updatedProduct: Product = {
       product_name: this.productForm.get('productName')?.value,
       price: this.productForm.get('productPrice')?.value,
-      image_title: proudctToBeUpdated.image_title
+      image_title:proudctToBeUpdated.image_title
     }
+
+    
+
     const index = this.products.indexOf(proudctToBeUpdated);
     if (index !== -1) {
         this.products[index] = updatedProduct;
@@ -61,16 +71,22 @@ export class ProductListComponent implements OnInit {
 console.warn(this.products)
 const myJSONString= JSON.stringify(this.products);
 console.log(myJSONString);
-this.fs.writeFile( 'C:/Users/Hassan Motiwala/Desktop/restaurant-portal/src/assets/menu.json', myJSONString)
+// this.fs.writeFile( 'C:/Users/Hassan Motiwala/Desktop/restaurant-portal/src/assets/menu.json', myJSONString)
     
           // write this array in menu.json
-    
+    this.isVisible=false;
     this.selectedProduct = undefined;
   }
 
   handleCancel(): void {
     this.isVisible = false;
     this.selectedProduct = undefined;
+  }
+selectedFile=null;
+  onFileSelector(event:any){
+this.selectedFile=event.target.files[0];
+    console.log(event);
+
   }
 
   ngOnInit(): void {
