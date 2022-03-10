@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
   ) { }
   
   showModal(product: Product): void {
+
     this.isVisible = true;
     this.selectedProduct = product;
 
@@ -87,6 +88,10 @@ selectedFile=null;
 this.selectedFile=event.target.files[0];
     console.log(event);
 
+  }
+
+  onModal(){
+    this.isVisible=true;
   }
 
   ngOnInit(): void {
