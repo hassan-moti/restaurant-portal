@@ -4,15 +4,14 @@ import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-// import * as fs from 'fs';
-// import * as path from 'path';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  //  fs = require('fs');
+
   products: any =[];
   selectedProduct: Product | undefined;
   demo:any; 

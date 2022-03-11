@@ -25,7 +25,9 @@
       <button id="addButton" nz-button [nzType]="'primary'" nzDanger (click)="onModal()">Add New Item</button>
     </div>
 
-  <!-- <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
+
+<!-- 
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
     <ng-container *nzModalContent>
         <form [formGroup]="productForm">
             <h2>Product Details</h2>

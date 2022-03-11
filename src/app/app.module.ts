@@ -12,15 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/MainMenu/product-list/product-list.component';
 import { ProductListService } from './components/product-list.service';
-// import { FormComponent } from './components/form/form.component';
+import { FormComponent } from './components/form/form.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations:[
     AppComponent,
-    ProductListComponent
-    // FormComponent
+    ProductListComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
