@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
-// import { FormComponent } from '../../form/form.component';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 // import * as fs from 'fs';
 // import * as path from 'path';
@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productServices:ProductListService,
     private fb: FormBuilder,
+    private modal: NzModalService
     // private form: FormComponent
   ) { }
   
@@ -92,6 +93,20 @@ this.selectedFile=event.target.files[0];
 
   onModal(){
     this.isVisible=true;
+    this.selectedProduct = undefined;
+  }
+
+  showDeleteConfirm(): void {
+    this.modal.confirm({
+      nzTitle: 'Are you sure delete this Item?',
+      nzContent: '<b style="color: red;">some description</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => console.log('OK'),
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel')
+    });
   }
 
   ngOnInit(): void {

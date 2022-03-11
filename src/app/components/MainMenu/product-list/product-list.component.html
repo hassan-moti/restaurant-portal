@@ -14,6 +14,7 @@
             </b>
             <br> 
             <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span>Edit Item</span></button>
+            <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm()">Remove Item</button>
           </nz-card>
         </nz-list-item>
       </div>
@@ -24,7 +25,7 @@
       <button id="addButton" nz-button [nzType]="'primary'" nzDanger (click)="onModal()">Add New Item</button>
     </div>
 
-  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
+  <!-- <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
     <ng-container *nzModalContent>
         <form [formGroup]="productForm">
             <h2>Product Details</h2>
@@ -43,4 +44,4 @@
     </ng-container>
 
 
-  </nz-modal>
+  </nz-modal> -->
