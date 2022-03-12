@@ -22,9 +22,16 @@
   </nz-list>
 
     <div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
-      <button id="addButton" nz-button [nzType]="'primary'" nzDanger (click)="onModal()">Add New Item</button>
+      <button id="addButton" nz-button [nzType]="'primary'" nzDanger (click)="showModal()">Add New Item</button>
     </div>
 
+<app-form
+[selectedProduct]="selectedProduct"
+[isVisible]="isVisible"
+[productList]="products"
+(resetVisibility)="resetVisibility()"
+>
+</app-form>
 
 <!-- 
   <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">

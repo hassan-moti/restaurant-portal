@@ -32,15 +32,21 @@ export class ProductListComponent implements OnInit {
     // private form: FormComponent
   ) { }
   
-  showModal(product: Product): void {
+  showModal(product?: Product): void {
 
     this.isVisible = true;
-    this.selectedProduct = product;
 
-    this.productForm.patchValue({
-      productName: this.selectedProduct.product_name,
-      productPrice: this.selectedProduct.price
-    });
+    if (product) {
+      this.selectedProduct = product;
+      this.productForm.patchValue({
+        productName: this.selectedProduct.product_name,
+        productPrice: this.selectedProduct.price
+      });
+    }
+  }
+
+  resetVisibility() {
+    this.isVisible = false;
   }
 
   handleSumbit(): void {
