@@ -48,6 +48,9 @@ export class ProductListComponent implements OnInit {
   resetVisibility() {
     this.isVisible = false;
   }
+  resetSelectedProduct(){
+    this.selectedProduct=undefined;
+  }
 
   handleSumbit(): void {
     console.log(this.selectedProduct);

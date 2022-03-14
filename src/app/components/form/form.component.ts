@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EventEmitter } from 'stream';
+import { EventEmitter } from '@angular/core';
 import { Product } from '../interface';
 import { ProductListService } from '../product-list.service';
 
@@ -14,8 +14,8 @@ export class FormComponent implements OnInit {
   @Input() isVisible = false;
   @Input() productList: Product[] = [];
 
-  @Output() newItemEvent = new EventEmitter<boolean>();;
-  
+  @Output() newItemEvent = new EventEmitter <boolean> ();
+  @Output() newSelectedProductEvent = new EventEmitter <undefined> ();
   constructor(  
     private productServices:ProductListService,
     private fb: FormBuilder,
@@ -69,12 +69,13 @@ console.log(myJSONString);
 // this.fs.writeFile( 'C:/Users/Hassan Motiwala/Desktop/restaurant-portal/src/assets/menu.json', myJSONString)
     
           // write this array in menu.json
-    this.isVisible=false;
     this.selectedProduct = undefined;
+    this.newSelectedProductEvent.emit(this.selectedProduct);
+    this.newItemEvent.emit(this.isVisible);
   }
 
   handleCancel(): void {
-    this.isVisible = false;
+    this.isVisible=false;
     this.selectedProduct = undefined;
     this.newItemEvent.emit(this.isVisible);
   }
