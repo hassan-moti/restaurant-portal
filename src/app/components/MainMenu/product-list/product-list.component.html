@@ -15,6 +15,9 @@
             <br> 
             <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span>Edit Item</span></button>
             <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm()">Remove Item</button>
+            <button nz-button [nzType]="'primary'" (click)="createModal()">
+              <span>Use Component</span>
+            </button>
           </nz-card>
         </nz-list-item>
       </div>
@@ -25,14 +28,14 @@
       <button id="addButton" nz-button [nzType]="'primary'" nzDanger (click)="showModal()">Add New Item</button>
     </div>
 
-<app-form
+<!-- <app-form
 [selectedProduct]="selectedProduct"
 [isVisible]="isVisible"
 [productList]="products"
 (newItemEvent)="resetVisibility()"
 (newSelectedProductEvent)="resetSelectedProduct()"
 >
-</app-form>
+</app-form> -->
 
 <!-- 
   <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">

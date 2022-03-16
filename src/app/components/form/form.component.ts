@@ -13,7 +13,6 @@ export class FormComponent implements OnInit {
   @Input() selectedProduct: Product | undefined;
   @Input() isVisible = false;
   @Input() productList: Product[] = [];
-
   @Output() newItemEvent = new EventEmitter <boolean> ();
   @Output() newSelectedProductEvent = new EventEmitter <undefined> ();
   constructor(  
@@ -26,16 +25,16 @@ export class FormComponent implements OnInit {
     productImage:['']
   });
 
-  showModal(product: Product): void {
+  // showModal(product: Product): void {
 
-    this.isVisible = true;
-    this.selectedProduct = product;
+  //   this.isVisible = true;
+  //   this.selectedProduct = product;
 
-    this.productForm.patchValue({
-      productName: this.selectedProduct.product_name,
-      productPrice: this.selectedProduct.price
-    });
-  }
+  //   this.productForm.patchValue({
+  //     productName: this.selectedProduct.product_name,
+  //     productPrice: this.selectedProduct.price
+  //   });
+  // }
 
   handleSumbit(): void {
     console.log(this.selectedProduct);

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService,NzModalRef } from 'ng-zorro-antd/modal';
+import { FormComponent } from '../../form/form.component';
+
 
 
 @Component({
@@ -28,12 +30,11 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productServices:ProductListService,
     private fb: FormBuilder,
-    private modal: NzModalService
-    // private form: FormComponent
+    private modal: NzModalService,
+    private viewContainerRef: ViewContainerRef
   ) { }
   
   showModal(product?: Product): void {
-
     this.isVisible = true;
 
     if (product) {
@@ -114,6 +115,14 @@ this.selectedFile=event.target.files[0];
       nzOnOk: () => console.log('OK'),
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
+    });
+  }
+  createModal(): void {
+    this.modal.create({
+      nzTitle: 'Modal Title',
+      nzContent: FormComponent,
+      nzClosable: false,
+      nzOnOk: () => new Promise((resolve) => setTimeout(resolve, 1000)),
     });
   }
 
