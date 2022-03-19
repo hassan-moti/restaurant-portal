@@ -3,9 +3,6 @@ import { FormBuilder } from '@angular/forms';
 import { Product } from '../../interface';
 import { ProductListService } from '../../product-list.service';
 import { NzModalService,NzModalRef } from 'ng-zorro-antd/modal';
-import { FormComponent } from '../../form/form.component';
-
-
 
 @Component({
   selector: 'app-product-list',
@@ -17,16 +14,12 @@ export class ProductListComponent implements OnInit {
   products: any =[];
   selectedProduct: Product | undefined;
   demo:any; 
-
   isVisible=false;
-  // forms=this.form;
-  
   productForm = this.fb.group({
     productName: [''],
     productPrice: [''],
     productImage:['']
   });
-
   constructor(
     private productServices:ProductListService,
     private fb: FormBuilder,
@@ -36,7 +29,6 @@ export class ProductListComponent implements OnInit {
   
   showModal(product?: Product): void {
     this.isVisible = true;
-
     if (product) {
       this.selectedProduct = product;
       this.productForm.patchValue({
@@ -45,20 +37,9 @@ export class ProductListComponent implements OnInit {
       });
     }
   }
-
-  resetVisibility() {
-    this.isVisible = false;
-  }
-  resetSelectedProduct(){
-    this.selectedProduct=undefined;
-  }
-
   handleSumbit(): void {
     console.log(this.selectedProduct);
-    // 
-    // let proudctToBeUpdated = this.products.find((product: Product) => product.product_name === this.selectedProduct?.product_name);
     let proudctToBeUpdated;
-    console.log(this.products);
     for (const prod of this.products) {
       if (prod.product_name === this.selectedProduct?.product_name) {
         console.log(prod);
@@ -66,45 +47,26 @@ export class ProductListComponent implements OnInit {
         break;
       }
     }
-    console.log(proudctToBeUpdated);
     const updatedProduct: Product = {
       product_name: this.productForm.get('productName')?.value,
       price: this.productForm.get('productPrice')?.value,
       image_title:proudctToBeUpdated.image_title
     }
-
-    
-
     const index = this.products.indexOf(proudctToBeUpdated);
     if (index !== -1) {
         this.products[index] = updatedProduct;
     }
-console.warn(this.products)
-const myJSONString= JSON.stringify(this.products);
-console.log(myJSONString);
-// this.fs.writeFile( 'C:/Users/Hassan Motiwala/Desktop/restaurant-portal/src/assets/menu.json', myJSONString)
-    
-          // write this array in menu.json
     this.isVisible=false;
     this.selectedProduct = undefined;
   }
-
   handleCancel(): void {
     this.isVisible = false;
-    this.selectedProduct = undefined;
+    this.selectedProduct = undefined ;
   }
-selectedFile=null;
-  onFileSelector(event:any){
-this.selectedFile=event.target.files[0];
-    console.log(event);
-
-  }
-
   onModal(){
     this.isVisible=true;
     this.selectedProduct = undefined;
   }
-
   showDeleteConfirm(): void {
     this.modal.confirm({
       nzTitle: 'Are you sure delete this Item?',
@@ -117,17 +79,7 @@ this.selectedFile=event.target.files[0];
       nzOnCancel: () => console.log('Cancel')
     });
   }
-  createModal(): void {
-    this.modal.create({
-      nzTitle: 'Modal Title',
-      nzContent: FormComponent,
-      nzClosable: false,
-      nzOnOk: () => new Promise((resolve) => setTimeout(resolve, 1000)),
-    });
-  }
-
   ngOnInit(): void {
-
-    this.products = this.productServices.getmenu();
+  this.products = this.productServices.getmenu();
   }
 }
