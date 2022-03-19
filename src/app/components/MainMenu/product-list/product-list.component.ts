@@ -10,7 +10,6 @@ import { NzModalService,NzModalRef } from 'ng-zorro-antd/modal';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
   products: any =[];
   selectedProduct: Product | undefined;
   demo:any; 
@@ -38,11 +37,9 @@ export class ProductListComponent implements OnInit {
     }
   }
   handleSumbit(): void {
-    console.log(this.selectedProduct);
     let proudctToBeUpdated;
     for (const prod of this.products) {
       if (prod.product_name === this.selectedProduct?.product_name) {
-        console.log(prod);
         proudctToBeUpdated = prod;
         break;
       }
@@ -64,8 +61,9 @@ export class ProductListComponent implements OnInit {
     this.selectedProduct = undefined ;
   }
   onModal(){
+    this.selectedProduct=undefined;
     this.isVisible=true;
-    this.selectedProduct = undefined;
+ 
   }
   showDeleteConfirm(): void {
     this.modal.confirm({
