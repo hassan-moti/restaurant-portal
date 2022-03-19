@@ -62,6 +62,10 @@ export class ProductListComponent implements OnInit {
   }
   onModal(){
     this.selectedProduct=undefined;
+    this.productForm.patchValue({
+      productName: null,
+      productPrice: null
+    });
     this.isVisible=true;
  
   }
