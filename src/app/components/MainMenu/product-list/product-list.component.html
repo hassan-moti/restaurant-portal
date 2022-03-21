@@ -12,16 +12,16 @@
           <b>
           {{product.price}}
           </b>
-          <br> 
-          <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span>Edit Item</span></button>
-          <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm()">Remove Item</button>
+          <br>
+          <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span><i nz-icon nzType="edit" nzTheme="fill"></i>Edit Item</span></button>
+          <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm()"><i nz-icon nzType="delete" nzTheme="fill"></i>Remove Item</button>
         </nz-card>
       </nz-list-item>
     </div>
   </div>
 </nz-list>
 <div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
-  <button nz-button [nzType]="'primary'" nzDanger (click)="onModal()">Add New Item</button>
+  <button nz-button [nzType]="'primary'" nzDanger (click)="onModal()"><i nz-icon nzType="plus-circle" nzTheme="fill"></i>Add New Item</button>
 </div>
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.product_name" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
   <ng-container *nzModalContent>
