@@ -12,7 +12,7 @@ import { NzModalService,NzModalRef } from 'ng-zorro-antd/modal';
 export class ProductListComponent implements OnInit {
   products: any =[];
   selectedProduct: Product | undefined;
-  demo:any; 
+  demo:any;
   isVisible=false;
   productForm = this.fb.group({
     productName: [''],
@@ -25,13 +25,13 @@ export class ProductListComponent implements OnInit {
     private modal: NzModalService,
     private viewContainerRef: ViewContainerRef
   ) { }
-  
+
   showModal(product?: Product): void {
     this.isVisible = true;
     if (product) {
       this.selectedProduct = product;
       this.productForm.patchValue({
-        productName: this.selectedProduct.product_name,
+        productName: this.selectedProduct.productName,
         productPrice: this.selectedProduct.price
       });
     }
@@ -39,15 +39,15 @@ export class ProductListComponent implements OnInit {
   handleSumbit(): void {
     let proudctToBeUpdated;
     for (const prod of this.products) {
-      if (prod.product_name === this.selectedProduct?.product_name) {
+      if (prod.product_name === this.selectedProduct?.productName) {
         proudctToBeUpdated = prod;
         break;
       }
     }
     const updatedProduct: Product = {
-      product_name: this.productForm.get('productName')?.value,
+      productName: this.productForm.get('productName')?.value,
       price: this.productForm.get('productPrice')?.value,
-      image_title:proudctToBeUpdated.image_title
+      imageTitle:proudctToBeUpdated.image_title
     }
     const index = this.products.indexOf(proudctToBeUpdated);
     if (index !== -1) {
@@ -67,7 +67,7 @@ export class ProductListComponent implements OnInit {
       productPrice: null
     });
     this.isVisible=true;
- 
+
   }
   showDeleteConfirm(): void {
     this.modal.confirm({
@@ -81,7 +81,9 @@ export class ProductListComponent implements OnInit {
       nzOnCancel: () => console.log('Cancel')
     });
   }
+//  public items:any=[]
   ngOnInit(): void {
-  this.products = this.productServices.getmenu();
+  this.productServices.getmenu().subscribe(data => this.products = data);
+  console.log(this.products);
   }
 }
