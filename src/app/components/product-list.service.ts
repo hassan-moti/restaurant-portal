@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class ProductListService {
 
   url:string="http://localhost:5000/"
+  // url:string="https://jsonplaceholder.typicode.com/users";
 
   getmenu():Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
@@ -17,7 +18,9 @@ export class ProductListService {
     // let items= menu;
     // return items;
   }
-  writeMenu(products: Product[]) {
+  updateMenu(product: any,editData:any) {
+    return this.http.put(`${this.url}update/${product}`,editData);
+
   }
    constructor(private http:HttpClient) {}
 }
