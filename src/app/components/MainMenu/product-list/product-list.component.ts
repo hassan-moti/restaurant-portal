@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   productForm = this.fb.group({
     productName: [''],
     productPrice: [''],
-    productImage: ['']
+    imageTitle: ['']
   });
   constructor(
     private productServices: ProductListService,
@@ -32,12 +32,13 @@ export class ProductListComponent implements OnInit {
       this.selectedProduct = product;
       this.productForm.patchValue({
         productName: this.selectedProduct.productName,
-        productPrice: this.selectedProduct.price
+        productPrice: this.selectedProduct.price,
+        imageTitle:this.selectedProduct.imageTitle
       });
 
     }
   }
-  handleSumbit(): void {
+  handleSumbit(selectedProduct:any): void {
     let proudctToBeUpdated;
     for (const prod of this.products) {
       if (prod.productName === this.selectedProduct?.productName) {
@@ -48,18 +49,31 @@ export class ProductListComponent implements OnInit {
     const updatedProduct: Product = {
       productName: this.productForm.get('productName')?.value,
       price: this.productForm.get('productPrice')?.value,
-      imageTitle: proudctToBeUpdated.imageTitle
+      imageTitle: this.productForm.get('imageTitle')?.value
+      // imageTitle: proudctToBeUpdated.imageTitle
     }
     const index = this.products.indexOf(proudctToBeUpdated);
     if (index !== -1) {
       this.products[index] = updatedProduct;
     }
+
+    if (selectedProduct===undefined){
+          this.productServices.addMenu(updatedProduct).subscribe((result)=>
+    console.warn(" added mubarak ho"));
+    }
+
+    else{
+    this.productServices.updateMenu(proudctToBeUpdated.productName,updatedProduct).
+    subscribe((result)=>console.log(result,"data updated mubarak ho "));
+
+    this.productServices.getmenu().subscribe(data => this.products = data);
+    }
     this.isVisible = false;
     this.selectedProduct = undefined;
 
-    this.productServices.updateMenu(proudctToBeUpdated.productName,updatedProduct).subscribe((result)=>
-    console.log(result,"data updated mubarak ho ")
-    )
+
+
+
   }
 
   handleCancel(): void {
@@ -70,11 +84,14 @@ export class ProductListComponent implements OnInit {
     this.selectedProduct = undefined;
     this.productForm.patchValue({
       productName: null,
-      productPrice: null
+      productPrice: null,
+      imageTitle:null
     });
     this.isVisible = true;
   }
-  showDeleteConfirm(): void {
+  //   this.productServices.addMenu(updatedProduct).subscribe((result)=>
+  //   console.warn(result," added mubarak ho"));
+  showDeleteConfirm(product:string): void {
     this.modal.confirm({
       nzTitle: 'Are you sure delete this Item?',
       nzContent: '<b style="color: red;">some description</b>',
@@ -82,7 +99,8 @@ export class ProductListComponent implements OnInit {
       nzOkType: 'primary',
       nzOkDanger: true,
       nzOnOk: () => {
-        console.log('OK')
+      this.productServices.deleteMenu(product).subscribe();
+      this.productServices.getmenu().subscribe(data => this.products = data);
       },
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')

@@ -7,15 +7,15 @@
           height="300"
           width="300"
           src="assets/{{product.imageTitle}}"
-          alt="{{product.productName}}">
+          alt="{{product.imageTitle}}">
           <br>
           <b>
-          {{product.price}}
+          {{product.productPrice}}
           </b>
           <br>
           <div style="text-align: center;">
           <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span><i nz-icon nzType="edit" nzTheme="fill"></i></span></button>
-          <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm()"><i nz-icon nzType="delete" nzTheme="fill"></i></button>
+          <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm(product.productName)"><i nz-icon nzType="delete" nzTheme="fill"></i></button>
           </div>
         </nz-card>
       </nz-list-item>
@@ -25,7 +25,7 @@
 <div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
   <button nz-button [nzType]="'primary'" nzDanger (click)="onModal()"><i nz-icon nzType="plus-circle" nzTheme="fill"></i></button>
 </div>
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.productName" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit()">
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.productName" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit(selectedProduct?.productName)">
   <ng-container *nzModalContent>
     <form [formGroup]="productForm">
       <h2>Product Details</h2>
@@ -38,7 +38,7 @@
 
       <img id="formImage" style="margin-top: 10px;" height="200" width="200" src="assets/{{selectedProduct?.imageTitle}}" alt="{{selectedProduct?.productName}}">
       <br>
-      <input type="file"  formControlName="productImage">
+      <input type="file"  formControlName="imageTitle">
 
     </form>
   </ng-container>

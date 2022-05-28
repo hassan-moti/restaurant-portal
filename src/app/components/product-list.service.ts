@@ -18,9 +18,15 @@ export class ProductListService {
     // let items= menu;
     // return items;
   }
-  updateMenu(product: any,editData:any) {
+  updateMenu(product:any,editData:any) {
     return this.http.put(`${this.url}update/${product}`,editData);
 
+  }
+  deleteMenu(product:string){
+    return this.http.delete(`${this.url}delete/${product}`);
+  }
+  addMenu(updateProduct:Product){
+    return this.http.post(this.url,updateProduct);
   }
    constructor(private http:HttpClient) {}
 }
