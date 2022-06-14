@@ -10,7 +10,7 @@
           alt="{{product.imageTitle}}">
           <br>
           <b>
-          {{product.productPrice}}
+          {{product.price}}
           </b>
           <br>
           <div style="text-align: center;">
@@ -25,20 +25,35 @@
 <div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
   <button nz-button [nzType]="'primary'" nzDanger (click)="onModal()"><i nz-icon nzType="plus-circle" nzTheme="fill"></i></button>
 </div>
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.productName" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSumbit(selectedProduct?.productName)">
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.productName" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSubmit(selectedProduct?.productName)">
   <ng-container *nzModalContent>
     <form [formGroup]="productForm">
       <h2>Product Details</h2>
 
       <label for="productName">Name: </label>
-      <input id="productName" type="text" formControlName="productName">
+      <input id="productName" type="text" formControlName="productName" >
 
       <label for="productPrice">Price: </label>
-      <input id="productPrice" type="text" formControlName="productPrice">
+      <input id="productPrice" type="text" formControlName="productPrice" >
 
       <img id="formImage" style="margin-top: 10px;" height="200" width="200" src="assets/{{selectedProduct?.imageTitle}}" alt="{{selectedProduct?.productName}}">
       <br>
-      <input type="file"  formControlName="imageTitle">
+
+      <nz-upload
+      nzAction= '(file:)=>{}'
+      [nzHeaders]="{ authorization: 'authorization-text' }"
+      (nzChange)="handleChange($event)"
+    >
+      <button nz-button>
+        <i nz-icon nzType="upload"></i>
+        Click to Upload
+      </button>
+    </nz-upload>
+
+
+
+
+      <!-- <input type="file"  formControlName="imageTitle"> -->
 
     </form>
   </ng-container>
