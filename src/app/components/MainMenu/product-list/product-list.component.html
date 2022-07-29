@@ -1,0 +1,65 @@
+<nz-list nzGrid>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="6" *ngFor="let product of products ;">
+      <nz-list-item>
+        <nz-card [nzTitle]="product.productName" [nzBordered]="true" >
+          <img
+          height="300"
+          width="300"
+          src="assets/{{product.imageTitle}}"
+          alt="{{product.imageTitle}}">
+          <br>
+          <b>
+          {{product.price}}
+          </b>
+          <br>
+          <div style="text-align: center;">
+          <button id="editButton" nz-button [nzType]="'primary'" (click)="showModal(product)"><span><i nz-icon nzType="edit" nzTheme="fill"></i></span></button>
+          <button id="deleteButton" nz-button [nzType]="'primary'" nzDanger (click)="showDeleteConfirm(product.productName)"><i nz-icon nzType="delete" nzTheme="fill"></i></button>
+          </div>
+        </nz-card>
+      </nz-list-item>
+    </div>
+  </div>
+</nz-list>
+<div style="display: grid; padding: 0px; margin-left: 50%; margin-right: 55%;">
+  <button nz-button [nzType]="'primary'" nzDanger (click)="onModal()"><i nz-icon nzType="plus-circle" nzTheme="fill"></i></button>
+</div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedProduct?.productName" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSubmit(selectedProduct?.productName)">
+  <ng-container *nzModalContent>
+    <form [formGroup]="productForm">
+      <h2>Product Details</h2>
+
+      <label for="productName">Name: </label>
+      <input id="productName" type="text" formControlName="productName" >
+
+      <label for="productPrice">Price: </label>
+      <input id="productPrice" type="text" formControlName="productPrice" >
+
+      <img id="formImage" style="margin-top: 10px;" height="200" width="200" src="assets/{{selectedProduct?.imageTitle}}" alt="{{selectedProduct?.productName}}">
+      <br>
+
+      <nz-upload
+      nzAction= '(file:)=>{}'
+      [nzHeaders]="{ authorization: 'authorization-text' }"
+      (nzChange)="handleChange($event)"
+    >
+      <button nz-button>
+        <i nz-icon nzType="upload"></i>
+        Click to Upload
+      </button>
+    </nz-upload>
+
+
+
+
+      <!-- <input type="file"  formControlName="imageTitle"> -->
+
+    </form>
+  </ng-container>
+</nz-modal>
+<!-- <div *ngFor="product of products">
+  <ul>
+    <li>{{product.productName}}</li>
+  </ul>
+</div> -->
